@@ -12,8 +12,8 @@ let roles = [];
 let isOwner = false;
 
 const staticRoles = [
-  ["act", "✨", "Активисты", "Под контролем PR/Менеджера", "Это участники чата, которые находятся под координацией PR/Менеджера и помогают ему в продвижении и развитии чата. Они принимают участие в создании видеороликов и другого рекламного контента, помогают организовывать различные мероприятия, активности и события, направленные на привлечение и удержание участников. Их основная задача — содействовать PR/Менеджеру в повышении активности чата, его узнаваемости и привлечении новой аудитории."],
-  ["sec", "🛡️", "Секьюрити", "Оперативное подразделение", "Это специалист, отвечающий за обеспечение безопасности и порядка в чате. Его основная задача — предотвращение нарушений правил, выявление и пресечение вредоносной деятельности, а также применение санкций к нарушителям. В отличие от обычного модератора, чьи обязанности могут включать широкий спектр модерации контента, секьюрити часто фокусируется на конкретных аспектах безопасности, таких как борьба со спамом, мошенничеством, угрозами и другими видами неправомерного поведения."]
+  ["act", "вњЁ", "РђРєС‚РёРІРёСЃС‚С‹", "РџРѕРґ РєРѕРЅС‚СЂРѕР»РµРј PR/РњРµРЅРµРґР¶РµСЂР°", "Р­С‚Рѕ СѓС‡Р°СЃС‚РЅРёРєРё С‡Р°С‚Р°, РєРѕС‚РѕСЂС‹Рµ РЅР°С…РѕРґСЏС‚СЃСЏ РїРѕРґ РєРѕРѕСЂРґРёРЅР°С†РёРµР№ PR/РњРµРЅРµРґР¶РµСЂР° Рё РїРѕРјРѕРіР°СЋС‚ РµРјСѓ РІ РїСЂРѕРґРІРёР¶РµРЅРёРё Рё СЂР°Р·РІРёС‚РёРё С‡Р°С‚Р°. РћРЅРё РїСЂРёРЅРёРјР°СЋС‚ СѓС‡Р°СЃС‚РёРµ РІ СЃРѕР·РґР°РЅРёРё РІРёРґРµРѕСЂРѕР»РёРєРѕРІ Рё РґСЂСѓРіРѕРіРѕ СЂРµРєР»Р°РјРЅРѕРіРѕ РєРѕРЅС‚РµРЅС‚Р°, РїРѕРјРѕРіР°СЋС‚ РѕСЂРіР°РЅРёР·РѕРІС‹РІР°С‚СЊ СЂР°Р·Р»РёС‡РЅС‹Рµ РјРµСЂРѕРїСЂРёСЏС‚РёСЏ, Р°РєС‚РёРІРЅРѕСЃС‚Рё Рё СЃРѕР±С‹С‚РёСЏ, РЅР°РїСЂР°РІР»РµРЅРЅС‹Рµ РЅР° РїСЂРёРІР»РµС‡РµРЅРёРµ Рё СѓРґРµСЂР¶Р°РЅРёРµ СѓС‡Р°СЃС‚РЅРёРєРѕРІ. РС… РѕСЃРЅРѕРІРЅР°СЏ Р·Р°РґР°С‡Р° вЂ” СЃРѕРґРµР№СЃС‚РІРѕРІР°С‚СЊ PR/РњРµРЅРµРґР¶РµСЂСѓ РІ РїРѕРІС‹С€РµРЅРёРё Р°РєС‚РёРІРЅРѕСЃС‚Рё С‡Р°С‚Р°, РµРіРѕ СѓР·РЅР°РІР°РµРјРѕСЃС‚Рё Рё РїСЂРёРІР»РµС‡РµРЅРёРё РЅРѕРІРѕР№ Р°СѓРґРёС‚РѕСЂРёРё."],
+  ["sec", "рџ›ЎпёЏ", "РЎРµРєСЊСЋСЂРёС‚Рё", "РћРїРµСЂР°С‚РёРІРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ", "Р­С‚Рѕ СЃРїРµС†РёР°Р»РёСЃС‚, РѕС‚РІРµС‡Р°СЋС‰РёР№ Р·Р° РѕР±РµСЃРїРµС‡РµРЅРёРµ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё Рё РїРѕСЂСЏРґРєР° РІ С‡Р°С‚Рµ. Р•РіРѕ РѕСЃРЅРѕРІРЅР°СЏ Р·Р°РґР°С‡Р° вЂ” РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёРµ РЅР°СЂСѓС€РµРЅРёР№ РїСЂР°РІРёР», РІС‹СЏРІР»РµРЅРёРµ Рё РїСЂРµСЃРµС‡РµРЅРёРµ РІСЂРµРґРѕРЅРѕСЃРЅРѕР№ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё, Р° С‚Р°РєР¶Рµ РїСЂРёРјРµРЅРµРЅРёРµ СЃР°РЅРєС†РёР№ Рє РЅР°СЂСѓС€РёС‚РµР»СЏРј. Р’ РѕС‚Р»РёС‡РёРµ РѕС‚ РѕР±С‹С‡РЅРѕРіРѕ РјРѕРґРµСЂР°С‚РѕСЂР°, С‡СЊРё РѕР±СЏР·Р°РЅРЅРѕСЃС‚Рё РјРѕРіСѓС‚ РІРєР»СЋС‡Р°С‚СЊ С€РёСЂРѕРєРёР№ СЃРїРµРєС‚СЂ РјРѕРґРµСЂР°С†РёРё РєРѕРЅС‚РµРЅС‚Р°, СЃРµРєСЊСЋСЂРёС‚Рё С‡Р°СЃС‚Рѕ С„РѕРєСѓСЃРёСЂСѓРµС‚СЃСЏ РЅР° РєРѕРЅРєСЂРµС‚РЅС‹С… Р°СЃРїРµРєС‚Р°С… Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё, С‚Р°РєРёС… РєР°Рє Р±РѕСЂСЊР±Р° СЃРѕ СЃРїР°РјРѕРј, РјРѕС€РµРЅРЅРёС‡РµСЃС‚РІРѕРј, СѓРіСЂРѕР·Р°РјРё Рё РґСЂСѓРіРёРјРё РІРёРґР°РјРё РЅРµРїСЂР°РІРѕРјРµСЂРЅРѕРіРѕ РїРѕРІРµРґРµРЅРёСЏ."]
 ];
 
 const esc = s =>
@@ -33,7 +33,7 @@ async function api(action, data = {}) {
   const result = await response.json();
 
   if (!response.ok || result.error) {
-    throw new Error(result.error || "Ошибка сервера");
+    throw new Error(result.error || "РћС€РёР±РєР° СЃРµСЂРІРµСЂР°");
   }
 
   return result;
@@ -67,7 +67,7 @@ function allRoles() {
   return roles.map(r => ({
     id: r.id,
     key: "role-" + r.id,
-    icon: "⭐",
+    icon: "в­ђ",
     title: r.title,
     person_name: r.person_name || "",
     stars: Number(r.stars || 1),
@@ -82,34 +82,34 @@ function home() {
 
   document.getElementById("content").innerHTML = `
     <div class="intro">
-      <h2>РУКОВОДСТВО АДМИНИСТРАЦИИ</h2>
-      <p>Справочник структуры, должностей и обязанностей администрации чата.</p>
+      <h2>Р РЈРљРћР’РћР”РЎРўР’Рћ РђР”РњРРќРРЎРўР РђР¦РР</h2>
+      <p>РЎРїСЂР°РІРѕС‡РЅРёРє СЃС‚СЂСѓРєС‚СѓСЂС‹, РґРѕР»Р¶РЅРѕСЃС‚РµР№ Рё РѕР±СЏР·Р°РЅРЅРѕСЃС‚РµР№ Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРё С‡Р°С‚Р°.</p>
     </div>
 
-    <h3>Структура</h3>
+    <h3>РЎС‚СЂСѓРєС‚СѓСЂР°</h3>
 
     <button class="btn" onclick="group('admin')">
-      <span class="icon">🏛️</span>
-      <span class="txt"><b>Административное управление</b><small>Общее управление и стратегическое планирование</small></span>
-      <span class="arrow">›</span>
+      <span class="icon">рџЏ›пёЏ</span>
+      <span class="txt"><b>РђРґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ</b><small>РћР±С‰РµРµ СѓРїСЂР°РІР»РµРЅРёРµ Рё СЃС‚СЂР°С‚РµРіРёС‡РµСЃРєРѕРµ РїР»Р°РЅРёСЂРѕРІР°РЅРёРµ</small></span>
+      <span class="arrow">вЂє</span>
     </button>
 
     <button class="btn" onclick="group('op')">
-      <span class="icon">⚙️</span>
-      <span class="txt"><b>Оперативное управление</b><small>Текущая деятельность и выполнение задач</small></span>
-      <span class="arrow">›</span>
+      <span class="icon">вљ™пёЏ</span>
+      <span class="txt"><b>РћРїРµСЂР°С‚РёРІРЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ</b><small>РўРµРєСѓС‰Р°СЏ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚СЊ Рё РІС‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡</small></span>
+      <span class="arrow">вЂє</span>
     </button>
 
-    <h3>Справочник должностей</h3>
+    <h3>РЎРїСЂР°РІРѕС‡РЅРёРє РґРѕР»Р¶РЅРѕСЃС‚РµР№</h3>
 
     ${list.map(r => `
       <button class="btn" onclick="role(${r.id})">
-        <span class="icon">${"⭐".repeat(Math.max(1, Math.min(5, r.stars)))}</span>
+        <span class="icon">${"в­ђ".repeat(Math.max(1, Math.min(5, r.stars)))}</span>
         <span class="txt">
           <b>${esc(r.title)}</b>
           <small>${esc(r.person_name)}</small>
         </span>
-        <span class="arrow">›</span>
+        <span class="arrow">вЂє</span>
       </button>
     `).join("")}
 
@@ -117,12 +117,12 @@ function home() {
       <button class="btn" onclick="staticRole('${r[0]}')">
         <span class="icon">${r[1]}</span>
         <span class="txt"><b>${esc(r[2])}</b><small>${esc(r[3])}</small></span>
-        <span class="arrow">›</span>
+        <span class="arrow">вЂє</span>
       </button>
     `).join("")}
 
     <button id="manageBtn" class="manage-btn" onclick="manage()" style="display:${isOwner ? "block" : "none"}">
-      ⚙️ Управление
+      вљ™пёЏ РЈРїСЂР°РІР»РµРЅРёРµ
     </button>
   `;
 
@@ -134,11 +134,11 @@ function role(id) {
   if (!r) return;
 
   document.getElementById("content").innerHTML = `
-    <button class="back" onclick="home()">← Назад</button>
+    <button class="back" onclick="home()">в†ђ РќР°Р·Р°Рґ</button>
 
     <article class="card">
       ${r.photo_url ? `<img class="role-photo" src="${esc(r.photo_url)}">` : ""}
-      <h2>${"⭐".repeat(Math.max(1, Math.min(5, r.stars)))} ${esc(r.title)}</h2>
+      <h2>${"в­ђ".repeat(Math.max(1, Math.min(5, r.stars)))} ${esc(r.title)}</h2>
       <small>${esc(r.person_name)}</small>
       <p>${esc(r.description)}</p>
     </article>
@@ -152,7 +152,7 @@ function staticRole(id) {
   if (!r) return;
 
   document.getElementById("content").innerHTML = `
-    <button class="back" onclick="home()">← Назад</button>
+    <button class="back" onclick="home()">в†ђ РќР°Р·Р°Рґ</button>
     <article class="card">
       <h2>${r[1]} ${esc(r[2])}</h2>
       <small>${esc(r[3])}</small>
@@ -167,22 +167,22 @@ function group(type) {
   const list = allRoles();
 
   document.getElementById("content").innerHTML = `
-    <button class="back" onclick="home()">← Назад</button>
+    <button class="back" onclick="home()">в†ђ РќР°Р·Р°Рґ</button>
 
     <div class="card">
-      <h2>${type === "admin" ? "🏛️ Административное управление" : "⚙️ Оперативное управление"}</h2>
+      <h2>${type === "admin" ? "рџЏ›пёЏ РђРґРјРёРЅРёСЃС‚СЂР°С‚РёРІРЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ" : "вљ™пёЏ РћРїРµСЂР°С‚РёРІРЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ"}</h2>
       <p>${type === "admin"
-        ? "Общее управление деятельности, стратегическое планирование, координация деятельности различных подразделений."
-        : "Управление текущей деятельностью организации, выполнение планов и задач."}</p>
+        ? "РћР±С‰РµРµ СѓРїСЂР°РІР»РµРЅРёРµ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё, СЃС‚СЂР°С‚РµРіРёС‡РµСЃРєРѕРµ РїР»Р°РЅРёСЂРѕРІР°РЅРёРµ, РєРѕРѕСЂРґРёРЅР°С†РёСЏ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚Рё СЂР°Р·Р»РёС‡РЅС‹С… РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№."
+        : "РЈРїСЂР°РІР»РµРЅРёРµ С‚РµРєСѓС‰РµР№ РґРµСЏС‚РµР»СЊРЅРѕСЃС‚СЊСЋ РѕСЂРіР°РЅРёР·Р°С†РёРё, РІС‹РїРѕР»РЅРµРЅРёРµ РїР»Р°РЅРѕРІ Рё Р·Р°РґР°С‡."}</p>
     </div>
 
-    <h3>Должности</h3>
+    <h3>Р”РѕР»Р¶РЅРѕСЃС‚Рё</h3>
 
     ${list.map(r => `
       <button class="btn" onclick="role(${r.id})">
-        <span class="icon">${"⭐".repeat(Math.max(1, Math.min(5, r.stars)))}</span>
+        <span class="icon">${"в­ђ".repeat(Math.max(1, Math.min(5, r.stars)))}</span>
         <span class="txt"><b>${esc(r.title)}</b><small>${esc(r.person_name)}</small></span>
-        <span class="arrow">›</span>
+        <span class="arrow">вЂє</span>
       </button>
     `).join("")}
   `;
@@ -194,20 +194,20 @@ function manage() {
   if (!isOwner) return;
 
   document.getElementById("content").innerHTML = `
-    <button class="back" onclick="home()">← Назад</button>
+    <button class="back" onclick="home()">в†ђ РќР°Р·Р°Рґ</button>
 
     <div class="card">
-      <h2>⚙️ Управление</h2>
-      <p>Добавление и изменение должностей.</p>
+      <h2>вљ™пёЏ РЈРїСЂР°РІР»РµРЅРёРµ</h2>
+      <p>Р”РѕР±Р°РІР»РµРЅРёРµ Рё РёР·РјРµРЅРµРЅРёРµ РґРѕР»Р¶РЅРѕСЃС‚РµР№.</p>
 
       <button class="btn" onclick="editRoleForm()">
-        <span class="icon">➕</span>
-        <span class="txt"><b>Добавить должность</b><small>Создать новую запись</small></span>
-        <span class="arrow">›</span>
+        <span class="icon">вћ•</span>
+        <span class="txt"><b>Р”РѕР±Р°РІРёС‚СЊ РґРѕР»Р¶РЅРѕСЃС‚СЊ</b><small>РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ Р·Р°РїРёСЃСЊ</small></span>
+        <span class="arrow">вЂє</span>
       </button>
     </div>
 
-    <h3>Должности</h3>
+    <h3>Р”РѕР»Р¶РЅРѕСЃС‚Рё</h3>
 
     ${allRoles().map(r => `
       <div class="admin-item">
@@ -216,8 +216,8 @@ function manage() {
           <small>${esc(r.person_name)}</small>
         </div>
         <div class="admin-actions">
-          <button onclick="editRoleForm(${r.id})">✏️</button>
-          <button onclick="deleteRole(${r.id})">🗑️</button>
+          <button onclick="editRoleForm(${r.id})">вњЏпёЏ</button>
+          <button onclick="deleteRole(${r.id})">рџ—‘пёЏ</button>
         </div>
       </div>
     `).join("")}
@@ -232,31 +232,31 @@ function editRoleForm(id = null) {
   const r = id ? allRoles().find(x => Number(x.id) === Number(id)) : null;
 
   document.getElementById("content").innerHTML = `
-    <button class="back" onclick="manage()">← Назад</button>
+    <button class="back" onclick="manage()">в†ђ РќР°Р·Р°Рґ</button>
 
     <div class="card">
-      <h2>${r ? "✏️ Изменить должность" : "➕ Новая должность"}</h2>
+      <h2>${r ? "вњЏпёЏ РР·РјРµРЅРёС‚СЊ РґРѕР»Р¶РЅРѕСЃС‚СЊ" : "вћ• РќРѕРІР°СЏ РґРѕР»Р¶РЅРѕСЃС‚СЊ"}</h2>
 
-      <label>Название должности</label>
-      <input id="roleTitle" value="${esc(r?.title || "")}" placeholder="Например: Глав/Админ">
+      <label>РќР°Р·РІР°РЅРёРµ РґРѕР»Р¶РЅРѕСЃС‚Рё</label>
+      <input id="roleTitle" value="${esc(r?.title || "")}" placeholder="РќР°РїСЂРёРјРµСЂ: Р“Р»Р°РІ/РђРґРјРёРЅ">
 
-      <label>Имя</label>
-      <input id="roleName" value="${esc(r?.person_name || "")}" placeholder="Имя">
+      <label>РРјСЏ</label>
+      <input id="roleName" value="${esc(r?.person_name || "")}" placeholder="РРјСЏ">
 
-      <label>Количество звёзд</label>
+      <label>РљРѕР»РёС‡РµСЃС‚РІРѕ Р·РІС‘Р·Рґ</label>
       <input id="roleStars" type="number" min="1" max="5" value="${r?.stars || 1}">
 
-      <label>Описание</label>
-      <textarea id="roleDescription" rows="7" placeholder="Описание должности">${esc(r?.description || "")}</textarea>
+      <label>РћРїРёСЃР°РЅРёРµ</label>
+      <textarea id="roleDescription" rows="7" placeholder="РћРїРёСЃР°РЅРёРµ РґРѕР»Р¶РЅРѕСЃС‚Рё">${esc(r?.description || "")}</textarea>
 
-      <label>Порядок</label>
+      <label>РџРѕСЂСЏРґРѕРє</label>
       <input id="roleOrder" type="number" value="${r?.sort_order ?? 0}">
 
-      <label>Фото</label>
+      <label>Р¤РѕС‚Рѕ</label>
       <input id="rolePhoto" type="file" accept="image/*">
 
       <button class="save-btn" onclick="saveRole(${id || "null"})">
-        💾 Сохранить
+        рџ’ѕ РЎРѕС…СЂР°РЅРёС‚СЊ
       </button>
     </div>
   `;
@@ -275,7 +275,7 @@ async function saveRole(id) {
   const file = document.getElementById("rolePhoto").files[0];
 
   if (!title) {
-    alert("Укажи название должности.");
+    alert("РЈРєР°Р¶Рё РЅР°Р·РІР°РЅРёРµ РґРѕР»Р¶РЅРѕСЃС‚Рё.");
     return;
   }
 
@@ -310,9 +310,9 @@ async function saveRole(id) {
     }
 
     await loadRoles();
-    alert("Сохранено.");
+    alert("РЎРѕС…СЂР°РЅРµРЅРѕ.");
   } catch (e) {
-    alert("Ошибка: " + e.message);
+    alert("РћС€РёР±РєР°: " + e.message);
   }
 }
 
@@ -333,14 +333,14 @@ function fileToBase64(file) {
 async function deleteRole(id) {
   if (!isOwner) return;
 
-  if (!confirm("Удалить эту должность?")) return;
+  if (!confirm("РЈРґР°Р»РёС‚СЊ СЌС‚Сѓ РґРѕР»Р¶РЅРѕСЃС‚СЊ?")) return;
 
   try {
     await api("delete", { id });
     await loadRoles();
-    alert("Удалено.");
+    alert("РЈРґР°Р»РµРЅРѕ.");
   } catch (e) {
-    alert("Ошибка: " + e.message);
+    alert("РћС€РёР±РєР°: " + e.message);
   }
 }
 
